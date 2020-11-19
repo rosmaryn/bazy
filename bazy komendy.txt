@@ -1,0 +1,35 @@
+4.1: create table przetwory(id_przetworu int primary key, rok_produkcji year default 1939, id_wykonawcy int, zawartosc varchar(40), dodatek varchar(60) default 'papryczka_chilli', id_konsumenta int, foreign key(id_wykonawcy) references postac(id_postaci), foreign key(id_konsumenta) references postac(id_postaci));
+
+4.2:  insert into przetwory values(1,1976,1,'bigos','papryczka_chilli',3);
+
+
+5.1:
+insert into postac values(4,'Highlander','wiking','1756-05-13',34);
+insert into postac values(5,'Raider','wiking','1746-07-23',23);
+insert into postac values(6,'Warlord','wiking','1726-01-21',54);
+insert into postac values(7,'Valk','wiking','1706-04-01',73);
+insert into postac values(8,'Vilkas','wiking','1753-09-11',43);
+
+5.2: create table statek(nazwa varchar(40) primary key, rodzaj_statku enum('drakkar','masztowiec','lodz_rybacka'),data_wodowania date, max_ladownosc int unsig
+ned);
+
+5.3:
+insert into statek values('Trana','drakkar','1789-01-01',1980);
+insert into statek values('Ormen','masztowiec','1789-01-02',32800);
+
+5.4: alter table postac add funkcja varchar(40);
+
+5.5: update postac set funkcja = 'kapitan' where nazwa = 'Bjorn';
+
+5.6:
+alter table postac add statek varchar(40);
+alter table statek add foreign key(nazwa) references postac(nazwa);
+
+5.7:
+update postac set statek = 'Trana' where rodzaj = 'wiking';
+update postac set statek = 'Trana' where rodzaj = 'ptak';
+update postac set statek = 'Ormen' where id_postaci > 4;
+
+5.8: delete from izba where nazwa_izby='spizarnia';
+
+5.9: drop table izba;
