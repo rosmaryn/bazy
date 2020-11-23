@@ -22,5 +22,3 @@ alter table postac modify column rodzaj enum('wiking','ptak','kobieta','syrena')
 
 c)
  insert into postac(id_postaci,nazwa,rodzaj,data_ur,wiek,pesel) values(6,'Gertruda_Nieszczera','syrena','1060-06-06',342,'12321232123');
-
-3.
