@@ -1,0 +1,39 @@
+1.1
+select avg(waga) from kreatura where rodzaj='wiking';
+
+1.2
+select avg(waga), count(rodzaj) from kreatura group by rodzaj;
+
+1.3
+select avg(2020-year(dataur)), rodzaj from kreatura group by rodzaj;
+
+2.1
+select sum(waga), rodzaj from zasob group by rodzaj;
+
+2.2
+select avg(waga), nazwa from zasob where ilosc>3 group by nazwa having sum(waga) > 10;
+
+2.3
+select count(distinct nazwa), rodzaj from zasob group by rodzaj having min(ilosc)>1;
+
+3.1
+select sum(ekwipunek.ilosc), kreatura.nazwa from ekwipunek inner join kreatura on ekwipunek.idKreatury = kreatura.idkreatury group by kreatura.nazwa;
+
+3.2
+select kreatura.nazwa, zasob.nazwa from(( kreatura inner join ekwipunek on ekwipunek.idkreatury = kreatura.idkreatury) inner join zasob on ekwipunek.idzasobu = zasob.idzasobu);
+
+
+3.3
+select kreatura.nazwa from kreatura left join ekwipunek on kreatura.idKreatury = ekwipunek.idEkwipunku where idekwipunku is null;
+
+4.1
+select kreatura.nazwa, zasob.nazwa from((kreatura inner join ekwipunek on kreatura.idkreatury = ekwipunek.idkreatury) inner join zasob on ekwipunek.idzasobu = zasob.idzasobu) where kreatura.dataur between '1670-01-01' and '1779-12-31';
+
+4.2
+select kreatura.nazwa from((kreatura inner join ekwipunek on kreatura.idkreatury = ekwipunek.idkreatury) inner join zasob on ekwipunek.idzasobu = zasob.idzasobu) where zasob.rodzaj='jedzenie' order by dataur desc;
+
+4.3
+select A.nazwa, B.nazwa from kreatura A, kreatura B where A.idKreatury=B.idKreatury+5;
+
+5.1
+select kreatura.rodzaj, avg(zasob.waga) from((kreatura inner join ekwipunek on kreatura.idkreatury = ekwipunek.idkreatury) inner join zasob on ekwipunek.idzasobu = zasob.idzasobu) where kreatura.rodzaj <> 'malpa' and kreatura.rodzaj <> 'waz' and ekwipunek.ilosc<30 group by rodzaj;
